@@ -8,22 +8,22 @@ l10n:
 
 {{SeeCompatTable}}{{DefaultAPISidebar("View Transitions API")}}
 
-The **View Transitions API** provides a mechanism for easily creating animated transitions between different DOM states, while also updating the DOM contents in a single step.
+**View Transitions API** を用いることで、異なるDOM状態感のアニメーション遷移を簡単に作成するとともに、DOM コンテンツを一発で更新することができます。
 
 ## 概念と使い方
 
-View transitions are a popular design choice for reducing users' cognitive load, helping them stay in context, and reducing perceived loading latency as they move between states or views of an application.
+ビュー遷移は、ユーザーの認知負荷を軽減し、遷移に至る文脈を見失わせないことに役立ち、アプリの状態やビューを遷移する際のローディング遅延を感じさせないという点で、人気のあるデザインです。
 
-However, creating view transitions on the web has historically been difficult. Transitions between states in single-page apps (SPAs) tends to involve writing significant CSS and JavaScript to:
+しかしながら、Web 上でビュー遷移を実装することは歴史上困難でした。シングルページアプリケーション (SPAs) における状態間の遷移は、ほとんどの場合、下記を実装するために大量の CSS や JavaScript を記述する必要がありました。
 
-- Handle the loading and positioning of the old and new content.
-- Animate the old and new states to create the transition.
-- Stop accidental user interactions with the old content from causing problems.
-- Remove the old content once the transition is complete.
+- 新旧のコンテンツの読み込みや配置を処理する。
+- 遷移を実現するために、新旧の状態をアニメーションする。
+- 旧コンテンツをユーザーが操作してしまい問題が起きることを防ぐ。
+- 遷移が完了したら旧コンテンツを削除する。
 
 There is also the major issue of accessibility issues caused by having the new and old content both present in the DOM at once, such as loss of reading position, focus confusion, and strange live region announcement behavior. And cross-document view transitions (i.e. across different pages in regular web sites) are impossible.
 
-The View Transitions API provides a much easier way of handling the required DOM changes and transition animations.
+View Transitions API を使うことで、DOM の変更と遷移のアニメーションをとても簡単に処理することができます。
 
 > **Note:** The View Transitions API doesn't currently enable cross-document view transitions, but this is planned for a future level of the spec and is actively being worked on.
 
@@ -258,12 +258,12 @@ This animation also requires the following CSS, to turn off the default CSS anim
 ## インターフェイス
 
 - {{domxref("ViewTransition")}}
-  - : Represents a view transition, and provides functionality to react to the transition reaching different states (e.g. ready to run the animation, or animation finished) or skip the transition altogether.
+  - : ビューの遷移を表すインターフェイスです。このインターフェイスを用いることで、ビュー遷移の状態が変わったとき (例：アニメーションの実行準備が完了したときや、アニメーションが終了したとき) に反応したり、ビュー遷移全体をスキップしたりすることができます。
 
 ## 他インターフェイスへの拡張
 
 - {{domxref("Document.startViewTransition()")}}
-  - : Starts a new view transition and returns a {{domxref("ViewTransition")}} object to represent it.
+  - : 新しいビュー遷移を開始し、そのビュー遷移を表す {{domxref("ViewTransition")}} オブジェクトを返します。
 
 ## CSS の追加
 
@@ -275,20 +275,20 @@ This animation also requires the following CSS, to turn off the default CSS anim
 ### 擬似要素
 
 - {{cssxref("::view-transition")}}
-  - : The root of the view transitions overlay, which contains all view transitions and sits over the top of all other page content.
+  - : ビュー遷移オーバーレイの親で、すべてのビュー遷移を内包し、他のすべてのページコンテンツの頂点に君臨します。
 - {{cssxref("::view-transition-group", "::view-transition-group()")}}
-  - : The root of a single view transition.
+  - : 個別のビュー遷移の親要素です。
 - {{cssxref("::view-transition-image-pair", "::view-transition-image-pair()")}}
-  - : The container for a view transition's old and new views — before and after the transition.
+  - : ビュー遷移の新旧(遷移前と遷移後の)ビューの格納先です。
 - {{cssxref("::view-transition-old", "::view-transition-old()")}}
-  - : A static screenshot of the old view, before the transition.
+  - : 遷移前の古いビューの静的なスクリーンショットです。
 - {{cssxref("::view-transition-new", "::view-transition-new()")}}
-  - : A live representation of the new view, after the transition.
+  - : 遷移後の新しいビューの今の状態です。
 
 ## 例
 
-- [Basic View Transitions demo](https://mdn.github.io/dom-examples/view-transitions/): A basic image gallery demo with separate transitions between old and new images, and old and new captions.
-- [HTTP 203 playlist](https://http203-playlist.netlify.app/): A more sophisticated video player demo app that features a number of different view transitions, many of which are explained in [Smooth and simple transitions with the View Transitions API](https://developer.chrome.com/docs/web-platform/view-transitions/).
+- [Basic View Transitions demo](https://mdn.github.io/dom-examples/view-transitions/): 新旧の画像と新旧のキャプションを別々に遷移させている、シンプルなイメージギャラリーのデモです。 
+- [HTTP 203 playlist](https://http203-playlist.netlify.app/): より洗練された動画プレイヤーのデモアプリです。さまざまなビュー遷移を実装しており、その多くは [Smooth and simple transitions with the View Transitions API](https://developer.chrome.com/docs/web-platform/view-transitions/) で解説されています。
 
 ## 仕様書
 
